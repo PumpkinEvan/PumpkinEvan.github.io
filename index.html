@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#98D7C5">
+    <meta name="theme-color" content="#C41E3A">
     <title>我们的婚礼邀请</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,14 +16,15 @@
         }
 
         :root {
-            --mint-green: #98D7C5;
-            --mint-light: #B8E8D5;
-            --mint-dark: #76C4B0;
-            --cream-white: #FDFCF0;
-            --wood-beige: #D4C4A8;
-            --soft-gray: #E8E6E1;
-            --text-dark: #4A5568;
-            --text-light: #718096;
+            --primary-red: #C41E3A;
+            --dark-red: #8B0000;
+            --bright-red: #DC143C;
+            --gold: #D4AF37;
+            --light-gold: #F4E5B6;
+            --cream-white: #FFF8F0;
+            --soft-pink: #FFE4E1;
+            --text-dark: #4A2C2A;
+            --text-light: #8B6B5E;
         }
 
         html {
@@ -32,10 +33,185 @@
 
         body {
             font-family: 'Noto Serif SC', serif;
-            background: linear-gradient(180deg, var(--cream-white) 0%, #F5F3E8 100%);
+            background: linear-gradient(180deg, var(--cream-white) 0%, #FFF5F0 100%);
             color: var(--text-dark);
             overflow-x: hidden;
             line-height: 1.8;
+        }
+
+        /* ========== 封面样式 ========== */
+        .cover-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 50%, var(--bright-red) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 1s ease;
+            overflow: hidden;
+        }
+
+        .cover-page.open {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cover-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        /* 金色边框装饰 */
+        .cover-border {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 3px solid var(--gold);
+            border-radius: 15px;
+            pointer-events: none;
+        }
+
+        .cover-border::before,
+        .cover-border::after {
+            content: '囍';
+            position: absolute;
+            font-size: 3rem;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .cover-border::before {
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .cover-border::after {
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* 封面内容 */
+        .cover-content {
+            text-align: center;
+            z-index: 10;
+            animation: coverFadeIn 1.5s ease-out;
+        }
+
+        @keyframes coverFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cover-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.1em;
+        }
+
+        .cover-chinese-title {
+            font-size: 3rem;
+            color: var(--light-gold);
+            margin-bottom: 2rem;
+            letter-spacing: 0.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .cover-couple {
+            font-size: 2rem;
+            color: var(--cream-white);
+            margin-bottom: 3rem;
+            letter-spacing: 0.3em;
+        }
+
+        .cover-date {
+            font-size: 1.5rem;
+            color: var(--light-gold);
+            padding: 1rem 3rem;
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            background: rgba(212, 175, 55, 0.1);
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .click-hint {
+            margin-top: 3rem;
+            color: var(--light-gold);
+            font-size: 1.1rem;
+            letter-spacing: 0.2em;
+            animation: pulse 2s infinite;
+            cursor: pointer;
+            padding: 1rem 2rem;
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            background: rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .click-hint:hover {
+            background: rgba(212, 175, 55, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* 花瓣飘落动画 */
+        .petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0 C30 30 10 50 0 70 C0 85 20 95 50 100 C80 95 100 85 100 70 C90 50 70 30 50 0 Z' fill='%23FFB6C1' opacity='0.8'/%3E%3C/svg%3E") no-repeat center/contain;
+            animation: petalFall linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg) translateX(0px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* ========== 主内容区域 ========== */
+        .main-content {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+        }
+
+        .main-content.visible {
+            opacity: 1;
+            transform: scale(1);
         }
 
         /* ========== 飘落动画容器 ========== */
@@ -55,6 +231,7 @@
             top: -50px;
             animation: fall linear forwards;
             opacity: 0.6;
+            font-size: 20px;
         }
 
         @keyframes fall {
@@ -73,15 +250,16 @@
             justify-content: center;
             align-items: center;
             padding: 1rem 2rem;
-            background: rgba(253, 252, 240, 0.9);
+            background: rgba(255, 248, 240, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
             transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(152, 215, 197, 0.3);
+            border-bottom: 2px solid var(--gold);
+            box-shadow: 0 2px 20px rgba(196, 30, 58, 0.1);
         }
 
         .navbar.scrolled {
-            box-shadow: 0 2px 20px rgba(152, 215, 197, 0.2);
+            box-shadow: 0 4px 30px rgba(196, 30, 58, 0.2);
         }
 
         .nav-content {
@@ -105,12 +283,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--mint-green);
+            background: var(--primary-red);
             transition: width 0.3s ease;
         }
 
         .nav-content a:hover {
-            color: var(--mint-dark);
+            color: var(--primary-red);
         }
 
         .nav-content a:hover::after {
@@ -128,8 +306,8 @@
             padding: 2rem;
             position: relative;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(152, 215, 197, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(212, 196, 168, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(196, 30, 58, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
         }
 
         .hero-decoration {
@@ -142,21 +320,21 @@
             overflow: hidden;
         }
 
-        .leaf {
+        .heart-shape {
             position: absolute;
-            width: 60px;
-            height: 60px;
+            width: 40px;
+            height: 40px;
             opacity: 0.1;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0 C20 40 0 60 0 80 C0 95 20 100 50 100 C80 100 100 95 100 80 C100 60 80 40 50 0 Z' fill='%2398D7C5'/%3E%3C/svg%3E") no-repeat center/contain;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='%23C41E3A'/%3E%3C/svg%3E") no-repeat center/contain;
         }
 
         .hero-title {
             font-family: 'Dancing Script', cursive;
             font-size: 5rem;
-            color: var(--mint-dark);
+            color: var(--primary-red);
             margin-bottom: 1rem;
             animation: fadeInUp 1.5s ease-out;
-            text-shadow: 2px 2px 4px rgba(152, 215, 197, 0.2);
+            text-shadow: 2px 2px 4px rgba(196, 30, 58, 0.2);
         }
 
         .hero-subtitle {
@@ -169,12 +347,12 @@
 
         .hero-date {
             font-size: 1.3rem;
-            color: var(--wood-beige);
+            color: var(--gold);
             padding: 1rem 2rem;
-            border: 2px solid var(--wood-beige);
+            border: 2px solid var(--gold);
             border-radius: 50px;
             animation: fadeInUp 1.5s ease-out 0.6s both;
-            background: rgba(212, 196, 168, 0.1);
+            background: rgba(212, 175, 55, 0.1);
         }
 
         .scroll-hint {
@@ -184,7 +362,7 @@
             transform: translateX(-50%);
             animation: bounce 2s infinite;
             cursor: pointer;
-            color: var(--mint-dark);
+            color: var(--primary-red);
             font-size: 2rem;
         }
 
@@ -215,7 +393,7 @@
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            color: var(--mint-dark);
+            color: var(--primary-red);
             margin-bottom: 3rem;
             position: relative;
             font-family: 'Dancing Script', cursive;
@@ -223,7 +401,7 @@
 
         .section-title::before,
         .section-title::after {
-            content: '🌿';
+            content: '💕';
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -241,9 +419,10 @@
 
         /* ========== 故事区域 ========== */
         .story-section {
-            background: linear-gradient(135deg, rgba(152, 215, 197, 0.05) 0%, rgba(212, 196, 168, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
             border-radius: 30px;
             margin: 2rem auto;
+            border: 2px solid rgba(196, 30, 58, 0.1);
         }
 
         .story-content {
@@ -259,7 +438,7 @@
 
         .story-text h3 {
             font-size: 1.8rem;
-            color: var(--mint-dark);
+            color: var(--primary-red);
             margin-bottom: 1.5rem;
         }
 
@@ -277,8 +456,9 @@
             aspect-ratio: 1;
             border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(152, 215, 197, 0.3);
+            box-shadow: 0 10px 40px rgba(196, 30, 58, 0.3);
             transition: transform 0.5s ease;
+            border: 5px solid var(--gold);
         }
 
         .photo-frame:hover {
@@ -294,10 +474,15 @@
         .photo-frame::before {
             content: '';
             position: absolute;
-            inset: -5px;
+            inset: -8px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--mint-green), var(--wood-beige));
+            background: linear-gradient(135deg, var(--primary-red), var(--gold));
             z-index: -1;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
         }
 
         /* 方形相框 */
@@ -327,26 +512,28 @@
             background: white;
             border-radius: 20px;
             padding: 3rem;
-            box-shadow: 0 10px 40px rgba(152, 215, 197, 0.15);
+            box-shadow: 0 10px 40px rgba(196, 30, 58, 0.2);
             text-align: center;
             position: relative;
             overflow: hidden;
             margin: 2rem 0;
+            border: 3px solid var(--gold);
         }
 
         .invitation-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(152, 215, 197, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-red), var(--gold), var(--primary-red));
+            animation: shimmer 3s infinite;
         }
 
-        @keyframes rotate {
-            to { transform: rotate(360deg); }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         .invitation-content {
@@ -362,7 +549,7 @@
         }
 
         .highlight {
-            color: var(--mint-dark);
+            color: var(--primary-red);
             font-weight: bold;
             font-size: 1.2rem;
         }
@@ -380,24 +567,37 @@
             border-radius: 20px;
             padding: 2rem;
             text-align: center;
-            box-shadow: 0 5px 30px rgba(152, 215, 197, 0.1);
+            box-shadow: 0 5px 30px rgba(196, 30, 58, 0.15);
             transition: all 0.4s ease;
             border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '囍';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 8rem;
+            color: rgba(196, 30, 58, 0.05);
+            font-weight: bold;
         }
 
         .info-card:hover {
             transform: translateY(-10px);
-            border-color: var(--mint-green);
-            box-shadow: 0 15px 50px rgba(152, 215, 197, 0.2);
+            border-color: var(--primary-red);
+            box-shadow: 0 15px 50px rgba(196, 30, 58, 0.3);
         }
 
         .info-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+            animation: bounce 2s infinite;
         }
 
         .info-card h3 {
-            color: var(--mint-dark);
+            color: var(--primary-red);
             font-size: 1.3rem;
             margin-bottom: 1rem;
         }
@@ -410,25 +610,26 @@
         .btn {
             display: inline-block;
             padding: 0.8rem 2rem;
-            background: linear-gradient(135deg, var(--mint-green), var(--mint-dark));
+            background: linear-gradient(135deg, var(--primary-red), var(--bright-red));
             color: white;
             text-decoration: none;
             border-radius: 50px;
             margin-top: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(152, 215, 197, 0.3);
+            box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
         }
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(152, 215, 197, 0.4);
+            box-shadow: 0 8px 25px rgba(196, 30, 58, 0.5);
         }
 
         /* ========== 照片墙 ========== */
         .gallery-section {
-            background: linear-gradient(180deg, rgba(152, 215, 197, 0.05) 0%, rgba(212, 196, 168, 0.05) 100%);
+            background: linear-gradient(180deg, rgba(196, 30, 58, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
             border-radius: 30px;
             margin: 2rem auto;
+            border: 2px solid rgba(196, 30, 58, 0.1);
         }
 
         .photo-gallery {
@@ -444,13 +645,14 @@
             border-radius: 15px;
             overflow: hidden;
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(152, 215, 197, 0.2);
+            box-shadow: 0 5px 20px rgba(196, 30, 58, 0.2);
             transition: all 0.4s ease;
+            border: 3px solid var(--gold);
         }
 
         .gallery-item:hover {
             transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 10px 40px rgba(152, 215, 197, 0.3);
+            box-shadow: 0 10px 40px rgba(196, 30, 58, 0.4);
         }
 
         .gallery-item img {
@@ -478,16 +680,32 @@
             background: white;
             padding: 1.5rem 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(152, 215, 197, 0.15);
+            box-shadow: 0 5px 20px rgba(196, 30, 58, 0.15);
             min-width: 100px;
+            border: 2px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(196, 30, 58, 0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
         }
 
         .countdown-number {
             display: block;
             font-size: 2.5rem;
             font-weight: bold;
-            color: var(--mint-dark);
+            color: var(--primary-red);
             font-family: 'Dancing Script', cursive;
+            position: relative;
+            z-index: 1;
         }
 
         .countdown-label {
@@ -495,14 +713,17 @@
             font-size: 0.9rem;
             color: var(--text-light);
             margin-top: 0.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         /* ========== 页脚 ========== */
         footer {
             text-align: center;
             padding: 4rem 2rem;
-            background: linear-gradient(180deg, var(--cream-white) 0%, var(--soft-gray) 100%);
+            background: linear-gradient(180deg, var(--cream-white) 0%, var(--soft-pink) 100%);
             margin-top: 4rem;
+            border-top: 2px solid var(--gold);
         }
 
         .footer-text {
@@ -514,6 +735,8 @@
         .footer-heart {
             font-size: 2rem;
             animation: heartbeat 1.5s infinite;
+            display: inline-block;
+            margin-top: 1rem;
         }
 
         @keyframes heartbeat {
@@ -541,15 +764,16 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--mint-green), var(--mint-dark));
+            background: linear-gradient(135deg, var(--primary-red), var(--bright-red));
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(152, 215, 197, 0.4);
+            box-shadow: 0 4px 20px rgba(196, 30, 58, 0.4);
             z-index: 1000;
             transition: all 0.3s ease;
             animation: pulse 2s infinite;
+            border: 3px solid var(--gold);
         }
 
         .music-control:hover {
@@ -565,9 +789,9 @@
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(152, 215, 197, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(152, 215, 197, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(152, 215, 197, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(196, 30, 58, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0); }
         }
 
         .music-icon {
@@ -576,8 +800,60 @@
             fill: white;
         }
 
+        /* ========== 烟花特效 ========== */
+        .firework {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        .firework-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
         /* ========== 响应式设计 ========== */
         @media (max-width: 768px) {
+            .cover-title {
+                font-size: 3rem;
+            }
+
+            .cover-chinese-title {
+                font-size: 2rem;
+                letter-spacing: 0.3em;
+            }
+
+            .cover-couple {
+                font-size: 1.5rem;
+            }
+
+            .cover-date {
+                font-size: 1.2rem;
+                padding: 0.8rem 2rem;
+            }
+
+            .cover-border::before,
+            .cover-border::after {
+                font-size: 2rem;
+            }
+
             .hero-title {
                 font-size: 3rem;
             }
@@ -639,6 +915,10 @@
 
         /* 平板横屏适配 */
         @media (max-width: 1024px) and (orientation: landscape) {
+            .cover-title {
+                font-size: 4rem;
+            }
+
             .hero {
                 min-height: 100vh;
                 padding: 1rem;
@@ -662,185 +942,306 @@
     <!-- 飘落动画容器 -->
     <div class="falling-container" id="fallingContainer"></div>
 
-    <!-- 导航栏 -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-content">
-            <a href="#home">首页</a>
-            <a href="#story">我们的故事</a>
-            <a href="#invitation">邀请函</a>
-            <a href="#info">婚礼信息</a>
-            <a href="#gallery">相册</a>
-        </div>
-    </nav>
-
-    <!-- 封面区域 -->
-    <div class="hero" id="home">
-        <div class="hero-decoration">
-            <div class="leaf" style="top: 10%; left: 10%;"></div>
-            <div class="leaf" style="top: 20%; right: 15%;"></div>
-            <div class="leaf" style="bottom: 30%; left: 20%;"></div>
-            <div class="leaf" style="bottom: 10%; right: 10%;"></div>
+    <!-- 封面页面 -->
+    <div class="cover-page" id="coverPage">
+        <div class="cover-decoration">
+            <div class="cover-border"></div>
         </div>
         
-        <h1 class="hero-title">We're Getting Married</h1>
-        <p class="hero-subtitle">我们结婚啦</p>
-        <div class="hero-date">
-            📅 2026 年 X 月 X 日
-        </div>
-
-        <div class="scroll-hint" onclick="document.getElementById('story').scrollIntoView()">
-            ↓
+        <!-- 动态生成花瓣 -->
+        <div id="petalContainer"></div>
+        
+        <div class="cover-content">
+            <h1 class="cover-title">We're Getting Married</h1>
+            <p class="cover-chinese-title">囍 · 我们结婚啦 · 囍</p>
+            <p class="cover-couple">新郎 ❤ 新娘</p>
+            <div class="cover-date">
+                📅 2026 年 X 月 X 日
+            </div>
+            <div class="click-hint" onclick="openInvitation()">
+                💌 点击开启请柬 💌
+            </div>
         </div>
     </div>
 
-    <!-- 故事区域 -->
-    <section class="story-section" id="story">
-        <h2 class="section-title">Our Story</h2>
-        <div class="story-content">
-            <div class="photo-frame fade-in">
-                <!-- 请替换下面的图片占位符 -->
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23B8E8D5' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='24' fill='%2376C4B0'%3E在此插入合照%3C/text%3E%3C/svg%3E" alt="我们的合照">
+    <!-- 主内容区域 -->
+    <div class="main-content" id="mainContent">
+        <!-- 导航栏 -->
+        <nav class="navbar" id="navbar">
+            <div class="nav-content">
+                <a href="#home">首页</a>
+                <a href="#story">我们的故事</a>
+                <a href="#invitation">邀请函</a>
+                <a href="#info">婚礼信息</a>
+                <a href="#gallery">相册</a>
             </div>
-            <div class="story-text fade-in">
-                <h3>💕 相遇 · 相知 · 相守</h3>
-                <p>从初次相遇的那一刻起，命运的齿轮便开始悄然转动。</p>
-                <p>我们一起走过春夏秋冬，分享彼此的喜怒哀乐，在平淡的日子里收获最珍贵的感动。</p>
-                <p>今天，我们决定携手共度余生，开启人生新的篇章。</p>
+        </nav>
+
+        <!-- 封面区域 -->
+        <div class="hero" id="home">
+            <div class="hero-decoration">
+                <div class="heart-shape" style="top: 10%; left: 10%;"></div>
+                <div class="heart-shape" style="top: 20%; right: 15%;"></div>
+                <div class="heart-shape" style="bottom: 30%; left: 20%;"></div>
+                <div class="heart-shape" style="bottom: 10%; right: 10%;"></div>
+            </div>
+            
+            <h1 class="hero-title">We're Getting Married</h1>
+            <p class="hero-subtitle">执子之手 · 与子偕老</p>
+            <div class="hero-date">
+                📅 2026 年 X 月 X 日
+            </div>
+
+            <div class="scroll-hint" onclick="document.getElementById('story').scrollIntoView()">
+                ↓
             </div>
         </div>
 
-        <!-- 倒计时 -->
-        <div class="countdown fade-in">
-            <div class="countdown-item">
-                <span class="countdown-number" id="days">00</span>
-                <span class="countdown-label">天</span>
+        <!-- 故事区域 -->
+        <section class="story-section" id="story">
+            <h2 class="section-title">Our Story</h2>
+            <div class="story-content">
+                <div class="photo-frame fade-in">
+                    <!-- 请替换下面的图片占位符 -->
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23FFB6C1' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='24' fill='%23C41E3A'%3E在此插入合照%3C/text%3E%3C/svg%3E" alt="我们的合照">
+                </div>
+                <div class="story-text fade-in">
+                    <h3>💕 相遇 · 相知 · 相守</h3>
+                    <p>从初次相遇的那一刻起，命运的齿轮便开始悄然转动。</p>
+                    <p>我们一起走过春夏秋冬，分享彼此的喜怒哀乐，在平淡的日子里收获最珍贵的感动。</p>
+                    <p>今天，我们决定携手共度余生，开启人生新的篇章。</p>
+                </div>
             </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="hours">00</span>
-                <span class="countdown-label">时</span>
+
+            <!-- 倒计时 -->
+            <div class="countdown fade-in">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">天</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">时</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">分</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">秒</span>
+                </div>
             </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="minutes">00</span>
-                <span class="countdown-label">分</span>
+        </section>
+
+        <!-- 邀请区域 -->
+        <section id="invitation">
+            <h2 class="section-title">Invitation</h2>
+            <div class="invitation-card fade-in">
+                <div class="invitation-content">
+                    <p class="invitation-text">
+                        谨定于 <span class="highlight">2026 年 X 月 X 日 中午 12:00</span><br>
+                        在 <span class="highlight">XX 酒店 XX 宴会厅</span><br>
+                        举行婚礼仪式
+                    </p>
+                    <p class="invitation-text">
+                        诚挚邀请您拨冗出席<br>
+                        与我们共同见证这幸福时刻<br>
+                        分享这份喜悦与感动
+                    </p>
+                </div>
             </div>
-            <div class="countdown-item">
-                <span class="countdown-number" id="seconds">00</span>
-                <span class="countdown-label">秒</span>
+        </section>
+
+        <!-- 婚礼信息 -->
+        <section id="info">
+            <h2 class="section-title">Wedding Info</h2>
+            <div class="info-grid">
+                <div class="info-card fade-in">
+                    <div class="info-icon">👰</div>
+                    <h3>新郎 & 新娘</h3>
+                    <p><strong>新郎：</strong>XXX</p>
+                    <p><strong>新娘：</strong>XXX</p>
+                </div>
+
+                <div class="info-card fade-in">
+                    <div class="info-icon">🕐</div>
+                    <h3>婚礼时间</h3>
+                    <p>2026 年 X 月 X 日</p>
+                    <p>农历 X 月 X 日</p>
+                    <p>中午 12:00 入席</p>
+                </div>
+
+                <div class="info-card fade-in">
+                    <div class="info-icon">📍</div>
+                    <h3>婚礼地点</h3>
+                    <p>XX 市 XX 区 XX 路 XX 号</p>
+                    <p>XX 酒店 XX 宴会厅</p>
+                    <a href="#" class="btn">查看地图</a>
+                </div>
+
+                <div class="info-card fade-in">
+                    <div class="info-icon">📞</div>
+                    <h3>联系我们</h3>
+                    <p>如有任何疑问</p>
+                    <p>欢迎随时联系</p>
+                    <a href="tel:13800138000" class="btn">拨打电话</a>
+                </div>
             </div>
+        </section>
+
+        <!-- 照片墙 -->
+        <section class="gallery-section" id="gallery">
+            <h2 class="section-title">Our Gallery</h2>
+            <div class="photo-gallery">
+                <!-- 请替换下面的图片占位符为你们的真实照片 -->
+                <div class="gallery-item fade-in">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23FFB6C1' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23C41E3A'%3E照片 1%3C/text%3E%3C/svg%3E" alt="美好回忆 1">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23FFD700' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23C41E3A'%3E照片 2%3C/text%3E%3C/svg%3E" alt="美好回忆 2">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23FFC0CB' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23C41E3A'%3E照片 3%3C/text%3E%3C/svg%3E" alt="美好回忆 3">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23FFE4E1' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23C41E3A'%3E照片 4%3C/text%3E%3C/svg%3E" alt="美好回忆 4">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23FFD700' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23C41E3A'%3E照片 5%3C/text%3E%3C/svg%3E" alt="美好回忆 5">
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23FFB6C1' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23C41E3A'%3E照片 6%3C/text%3E%3C/svg%3E" alt="美好回忆 6">
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer>
+            <p class="footer-text">感谢您的祝福与见证</p>
+            <p class="footer-text">期待与您相聚在这特别的日子</p>
+            <div class="footer-heart">❤️</div>
+        </footer>
+
+        <!-- 音乐控制 -->
+        <div class="music-control" id="musicBtn">
+            <svg class="music-icon" viewBox="0 0 24 24">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+            </svg>
         </div>
-    </section>
 
-    <!-- 邀请区域 -->
-    <section id="invitation">
-        <h2 class="section-title">Invitation</h2>
-        <div class="invitation-card fade-in">
-            <div class="invitation-content">
-                <p class="invitation-text">
-                    谨定于 <span class="highlight">2026 年 X 月 X 日 中午 12:00</span><br>
-                    在 <span class="highlight">XX 酒店 XX 宴会厅</span><br>
-                    举行婚礼仪式
-                </p>
-                <p class="invitation-text">
-                    诚挚邀请您拨冗出席<br>
-                    与我们共同见证这幸福时刻<br>
-                    分享这份喜悦与感动
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 婚礼信息 -->
-    <section id="info">
-        <h2 class="section-title">Wedding Info</h2>
-        <div class="info-grid">
-            <div class="info-card fade-in">
-                <div class="info-icon">👰</div>
-                <h3>新郎 & 新娘</h3>
-                <p><strong>新郎：</strong>XXX</p>
-                <p><strong>新娘：</strong>XXX</p>
-            </div>
-
-            <div class="info-card fade-in">
-                <div class="info-icon">🕐</div>
-                <h3>婚礼时间</h3>
-                <p>2026 年 X 月 X 日</p>
-                <p>农历 X 月 X 日</p>
-                <p>中午 12:00 入席</p>
-            </div>
-
-            <div class="info-card fade-in">
-                <div class="info-icon">📍</div>
-                <h3>婚礼地点</h3>
-                <p>XX 市 XX 区 XX 路 XX 号</p>
-                <p>XX 酒店 XX 宴会厅</p>
-                <a href="#" class="btn">查看地图</a>
-            </div>
-
-            <div class="info-card fade-in">
-                <div class="info-icon">📞</div>
-                <h3>联系我们</h3>
-                <p>如有任何疑问</p>
-                <p>欢迎随时联系</p>
-                <a href="tel:13800138000" class="btn">拨打电话</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 照片墙 -->
-    <section class="gallery-section" id="gallery">
-        <h2 class="section-title">Our Gallery</h2>
-        <div class="photo-gallery">
-            <!-- 请替换下面的图片占位符为你们的真实照片 -->
-            <div class="gallery-item fade-in">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23D4C4A8' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='white'%3E照片 1%3C/text%3E%3C/svg%3E" alt="美好回忆 1">
-            </div>
-            <div class="gallery-item fade-in">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%2398D7C5' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='white'%3E照片 2%3C/text%3E%3C/svg%3E" alt="美好回忆 2">
-            </div>
-            <div class="gallery-item fade-in">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23B8E8D5' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%2376C4B0'%3E照片 3%3C/text%3E%3C/svg%3E" alt="美好回忆 3">
-            </div>
-            <div class="gallery-item fade-in">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23E8E6E1' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23718096'%3E照片 4%3C/text%3E%3C/svg%3E" alt="美好回忆 4">
-            </div>
-            <div class="gallery-item fade-in">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%23D4C4A8' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='white'%3E照片 5%3C/text%3E%3C/svg%3E" alt="美好回忆 5">
-            </div>
-            <div class="gallery-item fade-in">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect fill='%2398D7C5' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='white'%3E照片 6%3C/text%3E%3C/svg%3E" alt="美好回忆 6">
-            </div>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer>
-        <p class="footer-text">感谢您的祝福与见证</p>
-        <p class="footer-text">期待与您相聚在这特别的日子</p>
-        <div class="footer-heart">💚</div>
-    </footer>
-
-    <!-- 音乐控制 -->
-    <div class="music-control" id="musicBtn">
-        <svg class="music-icon" viewBox="0 0 24 24">
-            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-        </svg>
+        <!-- 背景音乐 -->
+        <audio id="bgMusic" loop preload="auto">
+            <!-- 请替换为你的音乐文件链接 -->
+            <source src="" type="audio/mpeg">
+        </audio>
     </div>
-
-    <!-- 背景音乐 -->
-    <audio id="bgMusic" loop preload="auto">
-        <!-- 请替换为你的音乐文件链接 -->
-        <source src="" type="audio/mpeg">
-    </audio>
 
     <script>
+        // ========== 打开请柬 ==========
+        function openInvitation() {
+            const coverPage = document.getElementById('coverPage');
+            const mainContent = document.getElementById('mainContent');
+            
+            // 添加开启动画
+            coverPage.classList.add('open');
+            mainContent.classList.add('visible');
+            
+            // 播放音效（如果有）
+            try {
+                const audio = new AudioContext();
+                const oscillator = audio.createOscillator();
+                const gainNode = audio.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audio.destination);
+                
+                oscillator.frequency.value = 523.25; // C5
+                oscillator.type = 'sine';
+                gainNode.gain.setValueAtTime(0.3, audio.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audio.currentTime + 0.5);
+                
+                oscillator.start(audio.currentTime);
+                oscillator.stop(audio.currentTime + 0.5);
+            } catch (e) {
+                console.log('音效播放失败:', e);
+            }
+            
+            // 创建烟花特效
+            setTimeout(() => {
+                createFirework(window.innerWidth / 2, window.innerHeight / 3);
+            }, 600);
+            
+            setTimeout(() => {
+                createFirework(window.innerWidth / 3, window.innerHeight / 2);
+                createFirework(window.innerWidth * 2 / 3, window.innerHeight / 2);
+            }, 1000);
+        }
+
+        // ========== 花瓣飘落动画 ==========
+        function createPetal() {
+            const container = document.getElementById('petalContainer');
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            
+            // 随机位置和大小
+            petal.style.left = Math.random() * 100 + '%';
+            petal.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            petal.style.opacity = Math.random() * 0.5 + 0.3;
+            
+            container.appendChild(petal);
+            
+            // 动画结束后移除
+            setTimeout(() => {
+                petal.remove();
+            }, 7000);
+        }
+
+        // 每 500ms 生成一个花瓣
+        setInterval(createPetal, 500);
+
+        // ========== 烟花特效 ==========
+        function createFirework(x, y) {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = x + 'px';
+            firework.style.top = y + 'px';
+            document.body.appendChild(firework);
+            
+            const colors = ['#C41E3A', '#DC143C', '#FFD700', '#FFB6C1', '#FFFFFF'];
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework-particle';
+                
+                const angle = (i / particleCount) * 360;
+                const velocity = Math.random() * 100 + 50;
+                const tx = Math.cos(angle * Math.PI / 180) * velocity;
+                const ty = Math.sin(angle * Math.PI / 180) * velocity;
+                
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.left = '50%';
+                particle.style.top = '50%';
+                
+                firework.appendChild(particle);
+            }
+            
+            setTimeout(() => {
+                firework.remove();
+            }, 1000);
+        }
+
         // ========== 飘落动画 ==========
         function createFallingItem() {
             const container = document.getElementById('fallingContainer');
             const item = document.createElement('div');
             item.className = 'falling-item';
             
-            // 随机选择飘落物类型（花瓣或叶子）
-            const types = ['🌸', '🌿', '💚', '✨'];
+            // 随机选择飘落物类型
+            const types = ['❤️', '💕', '🌸', '✨', '囍'];
             item.textContent = types[Math.floor(Math.random() * types.length)];
             
             // 随机位置和大小
