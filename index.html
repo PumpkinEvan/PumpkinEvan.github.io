@@ -16,19 +16,23 @@
         }
 
         :root {
-            --primary-red: #C41E3A;
-            --dark-red: #8B0000;
-            --bright-red: #DC143C;
-            --gold: #D4AF37;
-            --light-gold: #F4E5B6;
-            --cream-white: #FFF8F0;
-            --soft-pink: #FFE4E1;
-            --text-dark: #4A2C2A;
-            --text-light: #8B6B5E;
+            /* 年轻化的珊瑚粉色调 */
+            --primary-red: #FF6B8A;
+            --dark-red: #E63950;
+            --bright-red: #FF8FA3;
+            --coral-pink: #FFB7C5;
+            --soft-coral: #FFD9E3;
+            --gold: #FFD700;
+            --rose-gold: #E8B4B8;
+            --cream-white: #FFF9FB;
+            --soft-pink: #FFE5EC;
+            --text-dark: #5A3A4A;
+            --text-light: #9A7B8A;
         }
 
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         body {
@@ -36,7 +40,10 @@
             background: linear-gradient(180deg, var(--cream-white) 0%, #FFF5F0 100%);
             color: var(--text-dark);
             overflow-x: hidden;
+            overflow-y: auto;
             line-height: 1.8;
+            margin: 0;
+            padding: 0;
         }
 
         /* ========== 封面样式 ========== */
@@ -46,7 +53,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 50%, var(--bright-red) 100%);
+            background: linear-gradient(135deg, var(--soft-coral) 0%, var(--coral-pink) 50%, var(--bright-red) 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -70,37 +77,36 @@
             pointer-events: none;
         }
 
-        /* 金色边框装饰 */
+        /* 金色边框装饰 - 简化为年轻化的圆点装饰 */
         .cover-border {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
-            border: 3px solid var(--gold);
-            border-radius: 15px;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            bottom: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
             pointer-events: none;
         }
 
         .cover-border::before,
         .cover-border::after {
-            content: '囍';
+            content: '';
             position: absolute;
-            font-size: 3rem;
-            color: var(--gold);
-            font-weight: bold;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
         }
 
         .cover-border::before {
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: -4px;
         }
 
         .cover-border::after {
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: -4px;
         }
 
         /* 封面内容 */
@@ -108,6 +114,15 @@
             text-align: center;
             z-index: 10;
             animation: coverFadeIn 1.5s ease-out;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 3rem 4rem;
+            border-radius: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(255, 107, 138, 0.2);
+            max-width: 90%;
+            width: fit-content;
+            margin: 0 auto;
         }
 
         @keyframes coverFadeIn {
@@ -124,81 +139,136 @@
         .cover-title {
             font-family: 'Dancing Script', cursive;
             font-size: 4.5rem;
-            color: var(--gold);
+            background: linear-gradient(135deg, #FFFFFF, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1rem;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            filter: drop-shadow(2px 2px 4px rgba(255, 107, 138, 0.3));
             letter-spacing: 0.1em;
         }
 
         .cover-chinese-title {
-            font-size: 3rem;
-            color: var(--light-gold);
-            margin-bottom: 2rem;
-            letter-spacing: 0.5em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 2.5rem;
+            color: #FFFFFF;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.3em;
+            font-weight: 300;
+            text-shadow: 2px 2px 8px rgba(255, 107, 138, 0.4);
         }
 
         .cover-couple {
-            font-size: 2rem;
-            color: var(--cream-white);
-            margin-bottom: 3rem;
-            letter-spacing: 0.3em;
+            font-size: 1.8rem;
+            color: var(--soft-coral);
+            margin-bottom: 2rem;
+            letter-spacing: 0.2em;
+            font-weight: 300;
         }
 
         .cover-date {
-            font-size: 1.5rem;
-            color: var(--light-gold);
-            padding: 1rem 3rem;
-            border: 2px solid var(--gold);
+            font-size: 1.3rem;
+            color: #FFFFFF;
+            padding: 0.8rem 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.5);
             border-radius: 50px;
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(255, 255, 255, 0.1);
             display: inline-block;
             margin-bottom: 2rem;
+            backdrop-filter: blur(5px);
         }
 
         .click-hint {
-            margin-top: 3rem;
-            color: var(--light-gold);
-            font-size: 1.1rem;
-            letter-spacing: 0.2em;
+            margin-top: 2rem;
+            color: #FFFFFF;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
             animation: pulse 2s infinite;
             cursor: pointer;
-            padding: 1rem 2rem;
-            border: 2px solid var(--gold);
+            padding: 0.8rem 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.5);
             border-radius: 50px;
-            background: rgba(212, 175, 55, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
         .click-hint:hover {
-            background: rgba(212, 175, 55, 0.3);
+            background: rgba(255, 255, 255, 0.25);
             transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
         }
 
-        /* 花瓣飘落动画 */
-        .petal {
+        /* ========== 泡泡飘落动画 - 从左下往右上飘动 ========== */
+        .bubble {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0 C30 30 10 50 0 70 C0 85 20 95 50 100 C80 95 100 85 100 70 C90 50 70 30 50 0 Z' fill='%23FFB6C1' opacity='0.8'/%3E%3C/svg%3E") no-repeat center/contain;
-            animation: petalFall linear infinite;
+            border-radius: 50%;
             opacity: 0.7;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 
+                        0 0 10px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(2px);
+            /* 合并所有动画 */
+            animation: 
+                bubbleFloat linear forwards,
+                bubbleColorShift linear infinite,
+                bubbleWobble ease-in-out infinite;
         }
 
-        @keyframes petalFall {
+        @keyframes bubbleFloat {
             0% {
-                transform: translateY(-10vh) rotate(0deg) translateX(0px);
+                transform: translate(0, 0) scale(0.8);
                 opacity: 0;
             }
             10% {
-                opacity: 0.8;
+                opacity: 0.7;
             }
             90% {
-                opacity: 0.8;
+                opacity: 0.7;
             }
             100% {
-                transform: translateY(110vh) rotate(720deg) translateX(100px);
+                transform: translate(var(--tx, 200px), calc(-120vh)) scale(1);
                 opacity: 0;
+            }
+        }
+
+        @keyframes bubbleColorShift {
+            0%, 100% {
+                background: radial-gradient(circle at 30% 30%, 
+                    rgba(255, 183, 197, 0.6) 0%, 
+                    rgba(255, 107, 138, 0.3) 40%, 
+                    rgba(255, 107, 138, 0.1) 100%);
+            }
+            25% {
+                background: radial-gradient(circle at 30% 30%, 
+                    rgba(255, 215, 0, 0.6) 0%, 
+                    rgba(255, 143, 163, 0.3) 40%, 
+                    rgba(255, 143, 163, 0.1) 100%);
+            }
+            50% {
+                background: radial-gradient(circle at 30% 30%, 
+                    rgba(255, 183, 197, 0.6) 0%, 
+                    rgba(230, 57, 80, 0.3) 40%, 
+                    rgba(230, 57, 80, 0.1) 100%);
+            }
+            75% {
+                background: radial-gradient(circle at 30% 30%, 
+                    rgba(255, 217, 227, 0.6) 0%, 
+                    rgba(255, 183, 197, 0.3) 40%, 
+                    rgba(255, 183, 197, 0.1) 100%);
+            }
+        }
+
+        @keyframes bubbleWobble {
+            0%, 100% {
+                margin-left: 0;
+            }
+            25% {
+                margin-left: 30px;
+            }
+            50% {
+                margin-left: -20px;
+            }
+            75% {
+                margin-left: 25px;
             }
         }
 
@@ -207,6 +277,8 @@
             opacity: 0;
             transform: scale(0.95);
             transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .main-content.visible {
@@ -214,15 +286,26 @@
             transform: scale(1);
         }
 
-        /* ========== 飘落动画容器 ========== */
+        /* 防止封面滚动时影响主页 */
+        body.cover-open {
+            overflow: hidden;
+        }
+        
+        /* 页面滚动由 body 控制，导航栏固定 */
+        body {
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* ========== 飘落动画容器 - 用于主页 ========== */
         .falling-container {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            min-height: 100%;
             pointer-events: none;
-            z-index: 9999;
+            z-index: 0;
             overflow: hidden;
         }
 
@@ -246,20 +329,24 @@
             top: 0;
             left: 0;
             right: 0;
-            display: flex;
+            display: none; /* 初始隐藏，封面打开后才显示 */
             justify-content: center;
             align-items: center;
             padding: 1rem 2rem;
-            background: rgba(255, 248, 240, 0.95);
+            background: rgba(255, 249, 251, 0.98);
             backdrop-filter: blur(10px);
-            z-index: 1000;
+            z-index: 10000;
             transition: all 0.3s ease;
-            border-bottom: 2px solid var(--gold);
-            box-shadow: 0 2px 20px rgba(196, 30, 58, 0.1);
+            border-bottom: 1px solid var(--coral-pink);
+            box-shadow: 0 2px 20px rgba(255, 107, 138, 0.15);
+        }
+
+        .navbar.visible {
+            display: flex;
         }
 
         .navbar.scrolled {
-            box-shadow: 0 4px 30px rgba(196, 30, 58, 0.2);
+            box-shadow: 0 4px 30px rgba(255, 107, 138, 0.2);
         }
 
         .nav-content {
@@ -295,6 +382,12 @@
             width: 100%;
         }
 
+        /* 占位元素，防止内容被导航栏遮挡 */
+        .nav-placeholder {
+            height: 70px;
+            width: 100%;
+        }
+
         /* ========== 封面区域 ========== */
         .hero {
             min-height: 100vh;
@@ -306,8 +399,8 @@
             padding: 2rem;
             position: relative;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(196, 30, 58, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 138, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
         }
 
         .hero-decoration {
@@ -322,19 +415,22 @@
 
         .heart-shape {
             position: absolute;
-            width: 40px;
-            height: 40px;
-            opacity: 0.1;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='%23C41E3A'/%3E%3C/svg%3E") no-repeat center/contain;
+            width: 30px;
+            height: 30px;
+            opacity: 0.08;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='%23FF6B8A'/%3E%3C/svg%3E") no-repeat center/contain;
         }
 
         .hero-title {
             font-family: 'Dancing Script', cursive;
             font-size: 5rem;
-            color: var(--primary-red);
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1rem;
             animation: fadeInUp 1.5s ease-out;
-            text-shadow: 2px 2px 4px rgba(196, 30, 58, 0.2);
+            filter: drop-shadow(2px 2px 4px rgba(255, 107, 138, 0.2));
         }
 
         .hero-subtitle {
@@ -343,16 +439,17 @@
             margin-bottom: 2rem;
             animation: fadeInUp 1.5s ease-out 0.3s both;
             letter-spacing: 0.5em;
+            font-weight: 300;
         }
 
         .hero-date {
             font-size: 1.3rem;
-            color: var(--gold);
+            color: var(--primary-red);
             padding: 1rem 2rem;
-            border: 2px solid var(--gold);
+            border: 2px solid var(--coral-pink);
             border-radius: 50px;
             animation: fadeInUp 1.5s ease-out 0.6s both;
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(255, 183, 197, 0.1);
         }
 
         .scroll-hint {
@@ -419,10 +516,10 @@
 
         /* ========== 故事区域 ========== */
         .story-section {
-            background: linear-gradient(135deg, rgba(196, 30, 58, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(255, 107, 138, 0.05) 0%, rgba(255, 183, 197, 0.05) 100%);
             border-radius: 30px;
             margin: 2rem auto;
-            border: 2px solid rgba(196, 30, 58, 0.1);
+            border: 1px solid rgba(255, 183, 197, 0.2);
         }
 
         .story-content {
@@ -438,7 +535,10 @@
 
         .story-text h3 {
             font-size: 1.8rem;
-            color: var(--primary-red);
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1.5rem;
         }
 
@@ -456,9 +556,9 @@
             aspect-ratio: 1;
             border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(196, 30, 58, 0.3);
+            box-shadow: 0 10px 40px rgba(255, 107, 138, 0.25);
             transition: transform 0.5s ease;
-            border: 5px solid var(--gold);
+            border: 4px solid white;
         }
 
         .photo-frame:hover {
@@ -474,9 +574,9 @@
         .photo-frame::before {
             content: '';
             position: absolute;
-            inset: -8px;
+            inset: -6px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-red), var(--gold));
+            background: linear-gradient(135deg, var(--primary-red), var(--coral-pink));
             z-index: -1;
             animation: rotate 10s linear infinite;
         }
@@ -510,14 +610,14 @@
         /* ========== 邀请卡片 ========== */
         .invitation-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 25px;
             padding: 3rem;
-            box-shadow: 0 10px 40px rgba(196, 30, 58, 0.2);
+            box-shadow: 0 10px 40px rgba(255, 107, 138, 0.15);
             text-align: center;
             position: relative;
             overflow: hidden;
             margin: 2rem 0;
-            border: 3px solid var(--gold);
+            border: 2px solid var(--coral-pink);
         }
 
         .invitation-card::before {
@@ -526,8 +626,8 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-red), var(--gold), var(--primary-red));
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-red), var(--coral-pink), var(--primary-red));
             animation: shimmer 3s infinite;
         }
 
@@ -567,7 +667,7 @@
             border-radius: 20px;
             padding: 2rem;
             text-align: center;
-            box-shadow: 0 5px 30px rgba(196, 30, 58, 0.15);
+            box-shadow: 0 5px 30px rgba(255, 107, 138, 0.12);
             transition: all 0.4s ease;
             border: 2px solid transparent;
             position: relative;
@@ -575,19 +675,18 @@
         }
 
         .info-card::before {
-            content: '囍';
+            content: '💕';
             position: absolute;
-            top: -20px;
-            right: -20px;
-            font-size: 8rem;
-            color: rgba(196, 30, 58, 0.05);
-            font-weight: bold;
+            top: -15px;
+            right: -15px;
+            font-size: 6rem;
+            color: rgba(255, 107, 138, 0.06);
         }
 
         .info-card:hover {
             transform: translateY(-10px);
-            border-color: var(--primary-red);
-            box-shadow: 0 15px 50px rgba(196, 30, 58, 0.3);
+            border-color: var(--coral-pink);
+            box-shadow: 0 15px 50px rgba(255, 107, 138, 0.25);
         }
 
         .info-icon {
@@ -597,7 +696,10 @@
         }
 
         .info-card h3 {
-            color: var(--primary-red);
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-size: 1.3rem;
             margin-bottom: 1rem;
         }
@@ -616,20 +718,20 @@
             border-radius: 50px;
             margin-top: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 107, 138, 0.3);
         }
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(196, 30, 58, 0.5);
+            box-shadow: 0 8px 25px rgba(255, 107, 138, 0.4);
         }
 
         /* ========== 照片墙 ========== */
         .gallery-section {
-            background: linear-gradient(180deg, rgba(196, 30, 58, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
+            background: linear-gradient(180deg, rgba(255, 107, 138, 0.05) 0%, rgba(255, 183, 197, 0.05) 100%);
             border-radius: 30px;
             margin: 2rem auto;
-            border: 2px solid rgba(196, 30, 58, 0.1);
+            border: 1px solid rgba(255, 183, 197, 0.2);
         }
 
         .photo-gallery {
@@ -645,14 +747,14 @@
             border-radius: 15px;
             overflow: hidden;
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(196, 30, 58, 0.2);
+            box-shadow: 0 5px 20px rgba(255, 107, 138, 0.15);
             transition: all 0.4s ease;
-            border: 3px solid var(--gold);
+            border: 2px solid var(--coral-pink);
         }
 
         .gallery-item:hover {
             transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 10px 40px rgba(196, 30, 58, 0.4);
+            box-shadow: 0 10px 40px rgba(255, 107, 138, 0.3);
         }
 
         .gallery-item img {
@@ -680,9 +782,9 @@
             background: white;
             padding: 1.5rem 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(196, 30, 58, 0.15);
+            box-shadow: 0 5px 20px rgba(255, 107, 138, 0.12);
             min-width: 100px;
-            border: 2px solid var(--gold);
+            border: 2px solid var(--coral-pink);
             position: relative;
             overflow: hidden;
         }
@@ -694,7 +796,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(196, 30, 58, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 107, 138, 0.08) 0%, transparent 70%);
             animation: rotate 10s linear infinite;
         }
 
@@ -702,7 +804,10 @@
             display: block;
             font-size: 2.5rem;
             font-weight: bold;
-            color: var(--primary-red);
+            background: linear-gradient(135deg, var(--primary-red), var(--bright-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-family: 'Dancing Script', cursive;
             position: relative;
             z-index: 1;
@@ -723,7 +828,7 @@
             padding: 4rem 2rem;
             background: linear-gradient(180deg, var(--cream-white) 0%, var(--soft-pink) 100%);
             margin-top: 4rem;
-            border-top: 2px solid var(--gold);
+            border-top: 1px solid var(--coral-pink);
         }
 
         .footer-text {
@@ -769,11 +874,11 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(196, 30, 58, 0.4);
+            box-shadow: 0 4px 20px rgba(255, 107, 138, 0.4);
             z-index: 1000;
             transition: all 0.3s ease;
             animation: pulse 2s infinite;
-            border: 3px solid var(--gold);
+            border: 2px solid white;
         }
 
         .music-control:hover {
@@ -789,9 +894,9 @@
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(196, 30, 58, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 138, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 107, 138, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 138, 0); }
         }
 
         .music-icon {
@@ -829,33 +934,53 @@
             }
         }
 
-        /* ========== 响应式设计 ========== */
+        /* ========== 响应式设计 - 三端适配 ========== */
+        
+        /* 手机端适配 (<=768px) */
         @media (max-width: 768px) {
-            .cover-title {
-                font-size: 3rem;
-            }
-
-            .cover-chinese-title {
-                font-size: 2rem;
-                letter-spacing: 0.3em;
-            }
-
-            .cover-couple {
-                font-size: 1.5rem;
-            }
-
-            .cover-date {
-                font-size: 1.2rem;
-                padding: 0.8rem 2rem;
+            .cover-border {
+                top: 20px;
+                left: 20px;
+                right: 20px;
+                bottom: 20px;
             }
 
             .cover-border::before,
             .cover-border::after {
-                font-size: 2rem;
+                width: 6px;
+                height: 6px;
+            }
+
+            .cover-content {
+                padding: 2rem 1.5rem;
+                max-width: 85%;
+            }
+
+            .cover-title {
+                font-size: 2.8rem;
+            }
+
+            .cover-chinese-title {
+                font-size: 1.8rem;
+                letter-spacing: 0.2em;
+            }
+
+            .cover-couple {
+                font-size: 1.3rem;
+            }
+
+            .cover-date {
+                font-size: 1.1rem;
+                padding: 0.6rem 1.5rem;
+            }
+
+            .cover-border::before,
+            .cover-border::after {
+                font-size: 1.5rem;
             }
 
             .hero-title {
-                font-size: 3rem;
+                font-size: 2.8rem;
             }
 
             .hero-subtitle {
@@ -864,15 +989,17 @@
             }
 
             .nav-content {
-                gap: 1.5rem;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             .nav-content a {
-                font-size: 0.85rem;
+                font-size: 0.8rem;
             }
 
             section {
-                padding: 4rem 1rem;
+                padding: 3rem 1rem;
             }
 
             .section-title {
@@ -884,25 +1011,34 @@
                 display: none;
             }
 
+            .story-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
             .countdown {
-                gap: 1rem;
+                gap: 0.8rem;
             }
 
             .countdown-item {
-                min-width: 70px;
-                padding: 1rem;
+                min-width: 65px;
+                padding: 0.8rem;
             }
 
             .countdown-number {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
 
             .photo-frame {
-                max-width: 280px;
+                max-width: 250px;
             }
 
             .invitation-card {
                 padding: 2rem 1.5rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
             }
 
             .music-control {
@@ -911,12 +1047,89 @@
                 width: 50px;
                 height: 50px;
             }
+
+            .nav-placeholder {
+                height: 60px;
+            }
         }
 
-        /* 平板横屏适配 */
-        @media (max-width: 1024px) and (orientation: landscape) {
+        /* 平板竖屏适配 (769px-1024px) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .cover-content {
+                padding: 2.5rem 3rem;
+            }
+
             .cover-title {
+                font-size: 3.5rem;
+            }
+
+            .cover-chinese-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-title {
                 font-size: 4rem;
+            }
+
+            .nav-content {
+                gap: 2rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .story-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .photo-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        /* 平板横屏及桌面端适配 */
+        @media (min-width: 1025px) {
+            .cover-content {
+                padding: 3.5rem 5rem;
+            }
+
+            .hero-title {
+                font-size: 5.5rem;
+            }
+
+            section {
+                padding: 6rem 2rem;
+                max-width: 1000px;
+            }
+
+            .story-content {
+                gap: 4rem;
+            }
+
+            .photo-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        /* 横屏模式优化 */
+        @media (max-width: 1024px) and (orientation: landscape) {
+            .cover-page {
+                align-items: center;
+            }
+
+            .cover-content {
+                padding: 2rem 3rem;
+            }
+
+            .cover-title {
+                font-size: 3.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .cover-chinese-title {
+                font-size: 2rem;
+                margin-bottom: 1rem;
             }
 
             .hero {
@@ -925,23 +1138,39 @@
             }
 
             .hero-title {
-                font-size: 4rem;
+                font-size: 3.5rem;
             }
 
             section {
                 padding: 3rem 2rem;
             }
+        }
 
-            .story-content {
-                grid-template-columns: 1fr 1fr;
+        /* 超大屏幕适配 (>=1440px) */
+        @media (min-width: 1440px) {
+            .cover-title {
+                font-size: 6rem;
+            }
+
+            .hero-title {
+                font-size: 7rem;
+            }
+
+            section {
+                max-width: 1200px;
+            }
+
+            .nav-content {
+                gap: 4rem;
+            }
+
+            .nav-content a {
+                font-size: 1.05rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 飘落动画容器 -->
-    <div class="falling-container" id="fallingContainer"></div>
-
     <!-- 封面页面 -->
     <div class="cover-page" id="coverPage">
         <div class="cover-decoration">
@@ -953,29 +1182,35 @@
         
         <div class="cover-content">
             <h1 class="cover-title">We're Getting Married</h1>
-            <p class="cover-chinese-title">囍 · 我们结婚啦 · 囍</p>
-            <p class="cover-couple">新郎 ❤ 新娘</p>
+            <p class="cover-chinese-title">我们结婚啦</p>
+            <p class="cover-couple">彭晶星 &nbsp;❤️&nbsp; 孙艳文</p>
             <div class="cover-date">
-                📅 2026 年 X 月 X 日
+                2026.05.04
             </div>
             <div class="click-hint" onclick="openInvitation()">
-                💌 点击开启请柬 💌
+                ✨ 点击开启邀请 ✨
             </div>
         </div>
     </div>
 
+    <!-- 导航栏 - 移到主内容外面，固定定位 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <a href="#home">首页</a>
+            <a href="#story">我们的故事</a>
+            <a href="#invitation">邀请函</a>
+            <a href="#info">婚礼信息</a>
+            <a href="#gallery">相册</a>
+        </div>
+    </nav>
+
     <!-- 主内容区域 -->
     <div class="main-content" id="mainContent">
-        <!-- 导航栏 -->
-        <nav class="navbar" id="navbar">
-            <div class="nav-content">
-                <a href="#home">首页</a>
-                <a href="#story">我们的故事</a>
-                <a href="#invitation">邀请函</a>
-                <a href="#info">婚礼信息</a>
-                <a href="#gallery">相册</a>
-            </div>
-        </nav>
+        <!-- 飘落动画容器 -->
+        <div class="falling-container" id="fallingContainer"></div>
+        
+        <!-- 导航栏占位 -->
+        <div class="nav-placeholder"></div>
 
         <!-- 封面区域 -->
         <div class="hero" id="home">
@@ -989,7 +1224,7 @@
             <h1 class="hero-title">We're Getting Married</h1>
             <p class="hero-subtitle">执子之手 · 与子偕老</p>
             <div class="hero-date">
-                📅 2026 年 X 月 X 日
+                📅 2026 年 5 月 4 日
             </div>
 
             <div class="scroll-hint" onclick="document.getElementById('story').scrollIntoView()">
@@ -1040,8 +1275,8 @@
             <div class="invitation-card fade-in">
                 <div class="invitation-content">
                     <p class="invitation-text">
-                        谨定于 <span class="highlight">2026 年 X 月 X 日 中午 12:00</span><br>
-                        在 <span class="highlight">XX 酒店 XX 宴会厅</span><br>
+                        谨定于 <span class="highlight">2026 年 5 月 4 日 下午 13:00</span><br>
+                        在 <span class="highlight">男方家中</span><br>
                         举行婚礼仪式
                     </p>
                     <p class="invitation-text">
@@ -1060,24 +1295,23 @@
                 <div class="info-card fade-in">
                     <div class="info-icon">👰</div>
                     <h3>新郎 & 新娘</h3>
-                    <p><strong>新郎：</strong>XXX</p>
-                    <p><strong>新娘：</strong>XXX</p>
+                    <p><strong>新郎：</strong>彭晶星</p>
+                    <p><strong>新娘：</strong>孙艳文</p>
                 </div>
 
                 <div class="info-card fade-in">
                     <div class="info-icon">🕐</div>
                     <h3>婚礼时间</h3>
-                    <p>2026 年 X 月 X 日</p>
-                    <p>农历 X 月 X 日</p>
-                    <p>中午 12:00 入席</p>
+                    <p>2026 年 5 月 4 日</p>
+                    <p>农历四月初八</p>
+                    <p>下午 13:00 入席</p>
                 </div>
 
                 <div class="info-card fade-in">
                     <div class="info-icon">📍</div>
                     <h3>婚礼地点</h3>
-                    <p>XX 市 XX 区 XX 路 XX 号</p>
-                    <p>XX 酒店 XX 宴会厅</p>
-                    <a href="#" class="btn">查看地图</a>
+                    <p>男方家里</p>
+                    <p>敬请光临</p>
                 </div>
 
                 <div class="info-card fade-in">
@@ -1142,10 +1376,22 @@
         function openInvitation() {
             const coverPage = document.getElementById('coverPage');
             const mainContent = document.getElementById('mainContent');
+            const navbar = document.getElementById('navbar');
+            
+            // 确保滚动到顶部
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
             
             // 添加开启动画
             coverPage.classList.add('open');
             mainContent.classList.add('visible');
+            
+            // 显示导航栏
+            navbar.classList.add('visible');
+            
+            // 恢复主页滚动
+            document.body.style.overflow = 'auto';
             
             // 播放音效（如果有）
             try {
@@ -1178,27 +1424,50 @@
             }, 1000);
         }
 
-        // ========== 花瓣飘落动画 ==========
-        function createPetal() {
+        // ========== 泡泡飘落动画 - 从左下画面外往右上飘动 ==========
+        function createBubble() {
             const container = document.getElementById('petalContainer');
-            const petal = document.createElement('div');
-            petal.className = 'petal';
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
             
-            // 随机位置和大小
-            petal.style.left = Math.random() * 100 + '%';
-            petal.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            petal.style.opacity = Math.random() * 0.5 + 0.3;
+            // 随机大小 (20px - 60px)
+            const size = Math.random() * 40 + 20;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
             
-            container.appendChild(petal);
+            // 从左下画面外开始 (左侧 -10% 到 30% 位置，底部下方)
+            const startLeft = Math.random() * 40 - 10; // -10% 到 30%
+            bubble.style.left = startLeft + '%';
+            bubble.style.top = (Math.random() * 15 + 90) + '%'; // 90%-105%，确保在底部下方
             
-            // 动画结束后移除
+            // 设置飘动参数 - 向右上方飘动（使用 CSS 变量）
+            const tx = Math.random() * 300 + 200; // 向右 200-500px
+            bubble.style.setProperty('--tx', tx + 'px');
+            
+            // 随机动画时长 (8s - 12s) - 增加时长确保飘出屏幕
+            const duration = Math.random() * 4 + 8;
+            bubble.style.animationDuration = duration + 's';
+            
+            // 无延迟，立即开始
+            bubble.style.animationDelay = '0s';
+            
+            container.appendChild(bubble);
+            
+            // 动画结束后移除 - 精确计算时间
             setTimeout(() => {
-                petal.remove();
-            }, 7000);
+                bubble.remove();
+            }, duration * 1000);
         }
 
-        // 每 500ms 生成一个花瓣
-        setInterval(createPetal, 500);
+        // 每 600ms 生成一个泡泡
+        setInterval(createBubble, 600);
+        
+        // 初始生成几个泡泡
+        setTimeout(() => {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createBubble, i * 400);
+            }
+        }, 500);
 
         // ========== 烟花特效 ==========
         function createFirework(x, y) {
@@ -1208,7 +1477,7 @@
             firework.style.top = y + 'px';
             document.body.appendChild(firework);
             
-            const colors = ['#C41E3A', '#DC143C', '#FFD700', '#FFB6C1', '#FFFFFF'];
+            const colors = ['#FF6B8A', '#FF8FA3', '#FFD700', '#FFB7C5', '#FFFFFF'];
             const particleCount = 30;
             
             for (let i = 0; i < particleCount; i++) {
@@ -1240,8 +1509,8 @@
             const item = document.createElement('div');
             item.className = 'falling-item';
             
-            // 随机选择飘落物类型
-            const types = ['❤️', '💕', '🌸', '✨', '囍'];
+            // 随机选择飘落物类型 - 更年轻的元素
+            const types = ['💖', '💕', '🌸', '✨', '💗'];
             item.textContent = types[Math.floor(Math.random() * types.length)];
             
             // 随机位置和大小
@@ -1278,6 +1547,13 @@
 
         window.addEventListener('scroll', handleScrollAnimation);
         window.addEventListener('load', handleScrollAnimation);
+        
+        // 页面加载时确保滚动到顶部
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+            // 封面开启时禁用主页滚动
+            document.body.style.overflow = 'hidden';
+        });
 
         // ========== 导航栏滚动效果 ==========
         window.addEventListener('scroll', () => {
@@ -1291,8 +1567,8 @@
 
         // ========== 倒计时 ==========
         function updateCountdown() {
-            // 请修改为你的婚礼日期
-            const weddingDate = new Date('2026-05-04T12:00:00');
+            // 婚礼日期：2026 年 5 月 4 日下午 13:00
+            const weddingDate = new Date('2026-05-04T13:00:00');
             const now = new Date();
             const diff = weddingDate - now;
 
