@@ -726,6 +726,283 @@
             box-shadow: 0 8px 25px rgba(255, 107, 138, 0.4);
         }
 
+        /* ========== 交通方案弹窗 ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #FFF9FB 0%, #FFE5EC 100%);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 10px 50px rgba(255, 107, 138, 0.3);
+            animation: modalSlideIn 0.4s ease-out;
+            z-index: 100001;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-red);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            line-height: 1;
+            z-index: 100002;
+        }
+
+        .modal-close:hover {
+            color: var(--dark-red);
+            transform: rotate(90deg);
+        }
+
+        .modal h2 {
+            text-align: center;
+            color: var(--primary-red);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .transport-options {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .transport-option {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(255, 107, 138, 0.15);
+            border: 2px solid var(--coral-pink);
+        }
+
+        .transport-option h3 {
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .transport-text {
+            margin-bottom: 1.5rem;
+        }
+
+        .transport-text p {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+        }
+
+        .transport-text strong {
+            color: var(--primary-red);
+        }
+
+        /* 公共交通路线优化样式 */
+        .route-intro {
+            background: linear-gradient(135deg, var(--soft-coral), var(--coral-pink));
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .route-intro p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .route-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .route-start {
+            background: white;
+            border-radius: 15px;
+            padding: 1.2rem;
+            border-left: 4px solid var(--primary-red);
+            box-shadow: 0 3px 15px rgba(255, 107, 138, 0.1);
+        }
+
+        .route-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px dashed var(--coral-pink);
+        }
+
+        .route-badge {
+            background: linear-gradient(135deg, var(--primary-red), var(--bright-red));
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .route-header strong {
+            color: var(--primary-red);
+            font-size: 1.05rem;
+        }
+
+        .route-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .step-num {
+            background: var(--soft-coral);
+            color: var(--primary-red);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-num.common {
+            background: var(--gold);
+            color: white;
+        }
+
+        .route-common {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 183, 197, 0.1));
+            border: 2px dashed var(--gold);
+            border-radius: 15px;
+            padding: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .common-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .common-badge {
+            background: linear-gradient(135deg, var(--gold), #FFA500);
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .travel-tips {
+            background: rgba(255, 107, 138, 0.05);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .travel-tips p {
+            margin: 0.5rem 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .travel-tips strong {
+            color: var(--primary-red);
+        }
+
+        .transport-image {
+            text-align: center;
+        }
+
+        .transport-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(255, 107, 138, 0.2);
+            border: 2px solid var(--coral-pink);
+            margin-bottom: 1rem;
+        }
+
+        .route-diagram-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: white;
+            border-radius: 15px;
+        }
+
+        .route-diagram {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(255, 107, 138, 0.15);
+        }
+
+        .image-caption {
+            margin-top: 0.8rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .modal-footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--coral-pink);
+        }
+
+        .modal-footer p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .btn-close {
+            background: linear-gradient(135deg, var(--primary-red), var(--bright-red));
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.8rem 2.5rem;
+        }
+
         /* ========== 照片墙 ========== */
         .gallery-section {
             background: linear-gradient(180deg, rgba(255, 107, 138, 0.05) 0%, rgba(255, 183, 197, 0.05) 100%);
@@ -1168,6 +1445,209 @@
                 font-size: 1.05rem;
             }
         }
+
+        /* 行程安排样式 */
+        .schedule-section {
+            background: linear-gradient(135deg, #FFF9FB, #FFE5EC);
+            padding: 4rem 2rem;
+        }
+
+        .schedule-timeline {
+            max-width: 1000px;
+            margin: 3rem auto;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        /* 曲线时间线 */
+        .timeline-curve {
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            width: 90%;
+            height: 200px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .timeline-path {
+            fill: none;
+            stroke: url(#curveGradient);
+            stroke-width: 4;
+            stroke-dasharray: 10, 5;
+            opacity: 0.6;
+        }
+
+        .schedule-item {
+            position: relative;
+            width: 25%;
+            float: left;
+            text-align: center;
+            padding: 0 1rem;
+            box-sizing: border-box;
+        }
+
+        .schedule-time-node {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-red), var(--soft-coral));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 5px 20px rgba(255, 107, 138, 0.3);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .schedule-time-node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(255, 107, 138, 0.5);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 5px 20px rgba(255, 107, 138, 0.3);
+            }
+            50% {
+                box-shadow: 0 5px 30px rgba(255, 107, 138, 0.5);
+            }
+        }
+
+        .schedule-time {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .schedule-event {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(255, 107, 138, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .schedule-event::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid white;
+        }
+
+        .schedule-event:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(255, 107, 138, 0.25);
+        }
+
+        .schedule-icon {
+            font-size: 3rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .schedule-info h3 {
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .schedule-info p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* 清除浮动 */
+        .schedule-timeline::after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        /* 手机端适配 */
+        @media (max-width: 768px) {
+            .schedule-item {
+                width: 100%;
+                float: none;
+                margin-bottom: 2rem;
+                padding: 0;
+            }
+
+            .timeline-curve {
+                display: none;
+            }
+
+            .schedule-time-node {
+                width: 70px;
+                height: 70px;
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            .schedule-time {
+                font-size: 1.1rem;
+            }
+
+            .schedule-event {
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 1.2rem;
+            }
+
+            .schedule-icon {
+                font-size: 2.5rem;
+            }
+
+            .schedule-info h3 {
+                font-size: 1.1rem;
+            }
+
+            .schedule-info p {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* 平板端适配 */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .schedule-time-node {
+                width: 70px;
+                height: 70px;
+            }
+
+            .schedule-time {
+                font-size: 1.1rem;
+            }
+
+            .schedule-icon {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* 桌面端优化 */
+        @media (min-width: 1025px) {
+            .schedule-item:nth-child(even) .schedule-event {
+                margin-top: 2rem;
+            }
+
+            .schedule-item:nth-child(odd) .schedule-event {
+                margin-top: -2rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1199,6 +1679,7 @@
             <a href="#home">首页</a>
             <a href="#story">我们的故事</a>
             <a href="#invitation">邀请函</a>
+            <a href="#schedule">行程</a>
             <a href="#info">婚礼信息</a>
             <a href="#gallery">相册</a>
         </div>
@@ -1288,6 +1769,83 @@
             </div>
         </section>
 
+        <!-- 行程安排 -->
+        <section class="schedule-section" id="schedule">
+            <h2 class="section-title">Wedding Schedule</h2>
+            <div class="schedule-timeline">
+                <!-- SVG 曲线背景 -->
+                <svg class="timeline-curve" viewBox="0 0 1000 200" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="curveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#FF6B8A;stop-opacity:1" />
+                            <stop offset="25%" style="stop-color:#FFD700;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#FFB7C5;stop-opacity:1" />
+                            <stop offset="75%" style="stop-color:#FFD700;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#FF6B8A;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- 波浪曲线路径 - 四个节点分别在 12.5%, 37.5%, 62.5%, 87.5% 位置 -->
+                    <path class="timeline-path" d="M 50 100 C 200 50 300 150 450 100 C 550 67 650 133 750 100 C 800 80 850 120 950 100" />
+                </svg>
+                
+                <!-- 时间节点 1 -->
+                <div class="schedule-item fade-in">
+                    <div class="schedule-time-node">
+                        <span class="schedule-time">10:00</span>
+                    </div>
+                    <div class="schedule-event">
+                        <div class="schedule-icon">🎉</div>
+                        <div class="schedule-info">
+                            <h3>宾客到达</h3>
+                            <p>签到入场，就座准备</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 时间节点 2 -->
+                <div class="schedule-item fade-in">
+                    <div class="schedule-time-node">
+                        <span class="schedule-time">11:30</span>
+                    </div>
+                    <div class="schedule-event">
+                        <div class="schedule-icon">🍽️</div>
+                        <div class="schedule-info">
+                            <h3>午宴时间</h3>
+                            <p>享用美味午餐</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 时间节点 3 -->
+                <div class="schedule-item fade-in">
+                    <div class="schedule-time-node">
+                        <span class="schedule-time">13:00</span>
+                    </div>
+                    <div class="schedule-event">
+                        <div class="schedule-icon">💒</div>
+                        <div class="schedule-info">
+                            <h3>婚礼仪式</h3>
+                            <p>见证幸福时刻</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 时间节点 4 -->
+                <div class="schedule-item fade-in">
+                    <div class="schedule-time-node">
+                        <span class="schedule-time">17:00</span>
+                    </div>
+                    <div class="schedule-event">
+                        <div class="schedule-icon">🌙</div>
+                        <div class="schedule-info">
+                            <h3>晚宴时间</h3>
+                            <p>晚宴聚会时光</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- 婚礼信息 -->
         <section id="info">
             <h2 class="section-title">Wedding Info</h2>
@@ -1310,8 +1868,9 @@
                 <div class="info-card fade-in">
                     <div class="info-icon">📍</div>
                     <h3>婚礼地点</h3>
-                    <p>男方家里</p>
+                    <p>上海市崇明区竖新镇永兴村248号</p>
                     <p>敬请光临</p>
+                    <a href="#" class="btn" onclick="showTransportGuide(); return false;">查看交通方案</a>
                 </div>
 
                 <div class="info-card fade-in">
@@ -1323,6 +1882,163 @@
                 </div>
             </div>
         </section>
+
+        <!-- 交通方案弹窗 -->
+        <div id="transportModal" class="modal" onclick="closeTransportModal(event)">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <span class="modal-close" onclick="closeTransportModal()">&times;</span>
+                <h2>🚗 交通方案指南</h2>
+                
+                <div class="transport-options">
+                    <!-- 方案一：自驾 -->
+                    <div class="transport-option">
+                        <h3>🚙 方案一：自驾</h3>
+                        <div class="transport-text">
+                            <p><strong>目的地：</strong>汉庭酒店(上海崇明堡镇店)</p>
+                            <p><strong>停车：</strong>现场有免费停车场</p>
+                            <p><strong>提示：</strong>高速费 50 元</p>
+                        </div>
+                    </div>
+
+                    <!-- 方案二：打车/网约车 -->
+                    <div class="transport-option">
+                        <h3>🚕 方案二：打车/网约车</h3>
+                        <div class="transport-text">
+                            <p><strong>上车点：</strong>上海市区任意地点</p>
+                            <p><strong>目的地：</strong>汉庭酒店(上海崇明堡镇店)</p>
+                            <p><strong>提示1：</strong>可提前预约车辆，避免等待</p>
+                            <p><strong>提示2：</strong>要注意确认高速费 50 元是谁承担</p>
+                        </div>
+                    </div>
+
+                    <!-- 方案三：全程公共交通 -->
+                    <div class="transport-option">
+                        <h3>🚇 方案三：全程公共交通</h3>
+                        
+                        <!-- 路线说明 -->
+                        <div class="route-intro">
+                            <p><strong>💡 路线说明：</strong>根据您的出发地点，选择对应的前段路线，所有路线都会在<strong>堡镇汽车站</strong>汇合，之后乘坐相同的岛内公交线路到达目的地。</p>
+                        </div>
+                        
+                        <!-- 路线汇合示意图 -->
+                        <div class="route-diagram-container">
+                            <img src="route-diagram.svg" alt="公共交通路线汇合示意图" class="route-diagram">
+                        </div>
+                        
+                        <!-- 三条起始路线 -->
+                        <div class="route-options">
+                            <!-- 路线①：浦东机场出发 -->
+                            <div class="route-start">
+                                <div class="route-header">
+                                    <span class="route-badge">路线①</span>
+                                    <h4>浦东机场出发</h4>
+                                </div>
+                                <div class="route-steps">
+                                    <div class="step">
+                                        <span class="step-num">1</span>
+                                        <span>浦东机场站乘坐<strong>磁悬浮</strong>至<strong>龙阳路站</strong></span>
+                                    </div>
+                                    <div class="step">
+                                        <span class="step-num">2</span>
+                                        <span>换乘<strong>地铁 2 号线</strong>至<strong>世纪大道站</strong></span>
+                                    </div>
+                                    <div class="step">
+                                        <span class="step-num">3</span>
+                                        <span>换乘<strong>地铁 6 号线</strong>至<strong>五洲大道站</strong></span>
+                                    </div>
+                                    <div class="step">
+                                        <span class="step-num">4</span>
+                                        <span>换乘<strong>申崇 6 线 B 线</strong>至<strong>堡镇汽车站</strong>（汇合点）</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 路线②：虹桥机场/高铁站出发 -->
+                            <div class="route-start">
+                                <div class="route-header">
+                                    <span class="route-badge">路线②</span>
+                                    <h4>虹桥机场/高铁站出发</h4>
+                                </div>
+                                <div class="route-steps">
+                                    <div class="step">
+                                        <span class="step-num">1</span>
+                                        <span>乘坐<strong>地铁 2 号线</strong>至<strong>世纪大道站</strong></span>
+                                    </div>
+                                    <div class="step">
+                                        <span class="step-num">2</span>
+                                        <span>换乘<strong>地铁 6 号线</strong>至<strong>五洲大道站</strong></span>
+                                    </div>
+                                    <div class="step">
+                                        <span class="step-num">3</span>
+                                        <span>换乘<strong>申崇 6 线 B 线</strong>至<strong>堡镇汽车站</strong>（汇合点）</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 路线③：上海站出发 -->
+                            <div class="route-start">
+                                <div class="route-header">
+                                    <span class="route-badge">路线③</span>
+                                    <h4>上海站出发</h4>
+                                </div>
+                                <div class="route-steps">
+                                    <div class="step">
+                                        <span class="step-num">1</span>
+                                        <span>乘坐<strong>地铁 1 号线</strong>至<strong>汶水路站</strong></span>
+                                    </div>
+                                    <div class="step">
+                                        <span class="step-num">2</span>
+                                        <span>换乘<strong>申崇 6 线</strong>至<strong>堡镇汽车站</strong>（汇合点）</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 共同路线 -->
+                        <div class="route-common">
+                            <div class="common-header">
+                                <span class="common-badge">🚌 共同路线（上岛后）</span>
+                            </div>
+                            <div class="route-steps">
+                                <div class="step">
+                                    <span class="step-num common">1</span>
+                                    <span>在<strong>堡镇汽车站</strong>换乘<strong>南堡专线</strong>至<strong>化肥厂站</strong></span>
+                                </div>
+                                <div class="step">
+                                    <span class="step-num common">2</span>
+                                    <span>步行至<strong>汉庭酒店</strong>门口（约 300 米）</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 出行提示 -->
+                        <div class="travel-tips">
+                            <h4>💡 出行提示</h4>
+                            <ul>
+                                <li>建议使用手机地图 APP 实时查询公交到站信息</li>
+                                <li>申崇线班次间隔约 15-20 分钟，请预留充足候车时间</li>
+                                <li>岛上公交可使用交通卡或手机支付</li>
+                                <li>全程约需 2.5-3 小时，建议提前出发</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- 截图展示 -->
+                        <div class="transport-image">
+                            <img src="images/pudongjichang.png" alt="浦东机场路线">
+                            <img src="images/6-huancheng.png" alt="五洲大道换乘申崇 6 线 B 线">
+                            <img src="images/shengchong-huancheng.png" alt="换乘岛内公交">
+                            <img src="images/hanting.png" alt="汉庭酒店">
+                            <p class="image-caption">公共交通路线参考图</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <p>💡 温馨提示：建议提前规划路线，预留充足时间</p>
+                    <button class="btn btn-close" onclick="closeTransportModal()">关闭</button>
+                </div>
+            </div>
+        </div>
 
         <!-- 照片墙 -->
         <section class="gallery-section" id="gallery">
@@ -1622,6 +2338,42 @@
             bgMusic.play().catch(() => {});
             document.removeEventListener('click', initAudio);
         }, { once: true });
+
+        // ========== 交通方案弹窗 ==========
+        let lastScrollPosition = 0;
+
+        function showTransportGuide() {
+            // 保存当前滚动位置
+            lastScrollPosition = window.scrollY;
+            
+            const modal = document.getElementById('transportModal');
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // 滚动到页面顶部
+            window.scrollTo(0, 0);
+        }
+
+        function closeTransportModal(event) {
+            if (!event || event.target === document.getElementById('transportModal')) {
+                const modal = document.getElementById('transportModal');
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                
+                // 恢复到婚礼地点模块的位置
+                const locationSection = document.querySelector('#info');
+                if (locationSection) {
+                    locationSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+
+        // ESC 键关闭弹窗
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeTransportModal();
+            }
+        });
     </script>
 </body>
 </html>
