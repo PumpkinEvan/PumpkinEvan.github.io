@@ -1416,7 +1416,7 @@
             }
 
             .photo-gallery {
-                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                grid-template-columns: repeat(3, 1fr);
                 gap: 1.5rem;
             }
         }
@@ -1441,7 +1441,7 @@
             }
 
             .photo-gallery {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-template-columns: repeat(3, 1fr);
                 gap: 1.8rem;
             }
         }
@@ -1480,7 +1480,7 @@
             }
 
             .photo-gallery {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                grid-template-columns: repeat(3, 1fr);
                 gap: 1.2rem;
             }
         }
@@ -1500,7 +1500,7 @@
             }
 
             .photo-gallery {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                grid-template-columns: repeat(3, 1fr);
                 gap: 2.5rem;
             }
 
@@ -1514,15 +1514,32 @@
         }
 
         /* 手机端照片墙额外优化 */
+        @media (max-width: 768px) {
+            .photo-gallery {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+
+            .gallery-item {
+                padding: 10px;
+            }
+
+            .gallery-item:hover {
+                transform: translateY(-6px);
+            }
+        }
+
+        /* 小屏手机优化 (<=480px) */
         @media (max-width: 480px) {
             .photo-gallery {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
                 padding: 1rem;
             }
 
             .gallery-item {
-                padding: 4px;
+                padding: 8px;
             }
         }
 
