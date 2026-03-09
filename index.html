@@ -981,7 +981,36 @@
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(255, 107, 138, 0.2);
             border: 2px solid var(--coral-pink);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* 带说明文字的图片容器 */
+        .image-with-caption {
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+            background: white;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(255, 107, 138, 0.15);
+            border: 2px solid var(--coral-pink);
+            transition: all 0.3s ease;
+        }
+
+        .image-with-caption:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(255, 107, 138, 0.25);
+        }
+
+        .single-image-caption {
+            color: var(--primary-red);
+            font-size: 0.95rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: linear-gradient(135deg, #fff5f7, #fff9fb);
+            border-radius: 8px;
         }
 
         .route-diagram-container {
@@ -2072,12 +2101,30 @@
                                 <li>全程约需 2.5-3 小时，建议提前出发</li>
                             </ul>
                         </div>
-                        
                         <!-- 截图展示 -->
                         <div class="transport-image">
-                            <img src="images/6-huancheng.png" alt="五洲大道换乘申崇 6 线 B 线">
-                            <img src="images/hanting.png" alt="汉庭酒店">
                             <p class="image-caption">公共交通路线参考图</p>
+                            <div class="image-with-caption">
+                            <img src="images/6-huancheng.png" alt="五洲大道换乘申崇 6 线 B 线">
+                                <p class="single-image-caption">五洲大道换乘申崇 6 线 B 线</p>
+                            </div>
+                            <div class="image-with-caption">
+                            <img src="images/image.png" alt="汶水路换成申崇 3 线区间">
+                                <p class="single-image-caption">汶水路换成申崇 3 线区间</p>
+                            </div>
+                            <div class="image-with-caption">
+                            <img src="images/image1.png" alt="第一次下车换乘岛内公交">
+                                <p class="single-image-caption">第一次下车换乘岛内公交</p>
+                            </div>
+                            <div class="image-with-caption">
+                            <img src="images/shengchong-huancheng.png" alt="换乘岛内公交2">
+                                <p class="single-image-caption">终点站换乘岛内公交</p>
+                            </div>
+                            <div class="image-with-caption">
+                            <img src="images/hanting.png" alt="汉庭酒店">
+                                <p class="single-image-caption">汉庭酒店</p>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
